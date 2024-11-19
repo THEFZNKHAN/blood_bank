@@ -30,6 +30,10 @@ The system will serve as a centralized platform connecting donors, hospitals, bl
 
 ## Cloud-Based Blood Bank Management System
 
+## Folder Structure
+![alt text](image.png)
+
+
 ### 1. Introduction
 #### 1.1 Purpose
 This document outlines the detailed software requirements for a cloud-based Blood Bank Management System implemented using the MERN (MongoDB, Express.js, React.js, Node.js) stack and AWS services.
