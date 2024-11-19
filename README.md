@@ -1,8 +1,8 @@
-
-# Blood-Bank
-
-
 # Cloud-Based Blood Bank Management System - SRS
+
+## Folder Structure
+![alt text](public/folder-strucute.png)
+
 ## 1. Introduction
 ### 1.1 Purpose
 This document outlines the detailed software requirements for a cloud-based Blood Bank Management System implemented using the MERN (MongoDB, Express.js, React.js, Node.js) stack and AWS services.
