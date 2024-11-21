@@ -7,32 +7,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model DonorProfile {
-  id               String     @id @default(cuid())
-  clerkUserId      String     @unique
-  bloodType        String
-  dateOfBirth      DateTime
-  weight           Float
-  lastDonationDate DateTime?
-  medicalHistory   String[]
+model Donor {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  name      String
+  email     String   @unique
+  phone     String
+  bloodType String
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  medicalHistories MedicalHistory[]
+  appointments     Appointment[]
   donations        Donation[]
-  createdAt        DateTime   @default(now())
-  updatedAt        DateTime   @updatedAt
 }
 
-model Donation {
-  id        String         @id @default(cuid())
+model MedicalHistory {
+  id          String   @id @default(cuid())
+  donor       Donor    @relation(fields: [donorId], references: [id])
+  donorId     String
+  conditions  String[]
+  medications String[]
+  createdAt   DateTime @default(now())
+}
+
+model Appointment {
+  id        String   @id @default(cuid())
+  donor     Donor    @relation(fields: [donorId], references: [id])
   donorId   String
   date      DateTime
   location  String
-  status    DonationStatus @default(SCHEDULED)
-  donor     DonorProfile   @relation(fields: [donorId], references: [clerkUserId])
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
+  createdAt DateTime @default(now())
 }
 
-enum DonationStatus {
-  SCHEDULED
-  COMPLETED
-  CANCELLED
+model Donation {
+  id         String   @id @default(cuid())
+  donor      Donor    @relation(fields: [donorId], references: [id])
+  donorId    String
+  date       DateTime @default(now())
+  bloodUnits Int
+  location   String
 }
