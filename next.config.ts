@@ -2,13 +2,14 @@ import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  optimizeFonts: true,
+
+  serverExternalPackages: ["@prisma/client"],
+
   experimental: {
     serverActions: {
       bodySizeLimit: "4mb",
       allowedOrigins: ["localhost:3000", "production.com"],
     },
-    serverComponentsExternalPackages: ["@prisma/client"],
   },
 
   webpack: (config, { isServer }) => {

@@ -1,6 +1,8 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { NextRequest } from "next/server";
+import { getAuth } from "@clerk/nextjs/server";
 
-export const getUserSession = async () => {
-  const user = await currentUser();
-  return user;
+export const authenticateUser = (req: NextRequest): string => {
+  const { userId } = getAuth(req);
+  if (!userId) throw new Error("Unauthorized: User not authenticated");
+  return userId;
 };
