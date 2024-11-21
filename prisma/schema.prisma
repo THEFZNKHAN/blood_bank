@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,52 +7,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Donor model
-
 model Donor {
-  id              String @id @default(uuid())
-  firstname       String
-  lastname        String
-  email           String 
-  password        String
-  phoneNumber     String
-  dateOfBirth     DateTime
-  gender          Gender
-  bloodType       String
-  address         DonorAddress[] @relation("DonorToDonorAddress")
-  weight          Int
-  medicalHistory  MedicalHistory[] @relation("DonorToMedicalHistory")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime  @updatedAt
-}
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  name      String
+  email     String   @unique
+  phone     String
+  bloodType String
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model DonorAddress {
-  id          String @id @default(uuid())
-  street      String
-  city        String
-  state       String
-  postalCode  String
-  donorId     String
-  donor       Donor @relation("DonorToDonorAddress", fields: [donorId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime  @updatedAt
+  medicalHistories MedicalHistory[]
+  appointments     Appointment[]
+  donations        Donation[]
 }
 
 model MedicalHistory {
-  id                String @id @default(uuid())
-  hasHypertension   Boolean
-  hasDiabetes       Boolean
-  hasHeartDisease   Boolean
-  hasHIV            Boolean
-  hasHepatitis      Boolean
-  donorId           String
-  donor             Donor @relation("DonorToMedicalHistory", fields: [donorId], references: [id])
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime  @updatedAt
+  id          String   @id @default(cuid())
+  donor       Donor    @relation(fields: [donorId], references: [id])
+  donorId     String
+  conditions  String[]
+  medications String[]
+  createdAt   DateTime @default(now())
 }
 
-enum Gender {
-  Male
-  Female
+model Appointment {
+  id        String   @id @default(cuid())
+  donor     Donor    @relation(fields: [donorId], references: [id])
+  donorId   String
+  date      DateTime
+  location  String
+  createdAt DateTime @default(now())
 }
 
+model Donation {
+  id         String   @id @default(cuid())
+  donor      Donor    @relation(fields: [donorId], references: [id])
+  donorId    String
+  date       DateTime @default(now())
+  bloodUnits Int
+  location   String
+}
