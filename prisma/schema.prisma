@@ -38,6 +38,7 @@ model Appointment {
   donorId   String
   date      DateTime
   location  String
+  status    String @default("Scheduled")  // Scheduled, Completed, Canceled.
   createdAt DateTime @default(now())
 }
 
