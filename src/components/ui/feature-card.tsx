@@ -4,7 +4,7 @@ import Link from "next/link";
 const FeatureCards = () => {
 	const features = [
 		{
-			href: "1",
+			href: "blood_availability_search",
 			title: "Blood Availability Search",
 			description:
 				"Quick search for available blood types across registered blood banks",

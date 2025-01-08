@@ -30,9 +30,9 @@ const NavBar = async () => {
 
 	return (
 		<header className="bg-[#f1f6ff] h-20 flex items-center  justify-between shadow-md">
-			<div className="w-40 pl-10 flex items-center  h-full">
+			<Link href={"/"} className="w-40 pl-10 flex items-center h-full">
 				<Logo />
-			</div>
+			</Link>
 			<nav className={"flex-1 items-center space-x-4 lg:space-x-6"}>
 				{routes.map((route) => (
 					<Link
