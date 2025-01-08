@@ -1,4 +1,4 @@
-import { Search, LogIn, BookPlus } from "lucide-react";
+import { Search, LogIn, BookPlus, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const FeatureCards = () => {
@@ -10,17 +10,18 @@ const FeatureCards = () => {
 				"Quick search for available blood types across registered blood banks",
 			icon: <Search className="w-6 h-6" />,
 		},
-		{
-			href: "2",
-			title: "Find Your Nearest Blood Bank",
-			description: "Locate the closest blood bank centers in your area",
-			icon: <Search className="w-6 h-6" />,
-		},
+
 		{
 			href: "3",
 			title: "Donor Login",
 			description: "Access your donor profile and donation history",
 			icon: <LogIn className="w-6 h-6" />,
+		},
+		{
+			href: "2",
+			title: "Find Your Nearest Blood Bank",
+			description: "Locate the closest blood bank centers in your area",
+			icon: <MapPin className="w-6 h-6" />,
 		},
 		{
 			href: "4",
@@ -37,7 +38,7 @@ const FeatureCards = () => {
 					<Link
 						href={feature.href}
 						key={index}
-						className="group relative rounded-lg border-2 p-6 border-[#e7eef2] transition-all duration-300 cursor-pointer"
+						className="group relative rounded-xl border-2 p-6 border-red-200 transition-all duration-300 cursor-pointer shadow-sm shadow-red-300"
 					>
 						<div className="flex flex-col items-start space-y-4">
 							<div className="p-2 rounded-full text-[#0b3052] bg-[#d7dfef] group-hover:bg-[#f1f6ff] transition-colors">
@@ -50,7 +51,7 @@ const FeatureCards = () => {
 								{feature.description}
 							</p>
 						</div>
-						<div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-800/5 to-indigo-800/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+						<div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-800/5 to-indigo-800/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 					</Link>
 				))}
 			</div>

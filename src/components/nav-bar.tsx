@@ -29,8 +29,8 @@ const NavBar = async () => {
 	];
 
 	return (
-		<header className="bg-[#f1f6ff] h-16 flex items-center  justify-between shadow-md">
-			<div className="w-40 pl-2  h-full">
+		<header className="bg-[#f1f6ff] h-20 flex items-center  justify-between shadow-md">
+			<div className="w-40 pl-10 flex items-center  h-full">
 				<Logo />
 			</div>
 			<nav className={"flex-1 items-center space-x-4 lg:space-x-6"}>
@@ -38,7 +38,7 @@ const NavBar = async () => {
 					<Link
 						key={route.href}
 						href={route.href}
-						className="text-[#072037] hover:text-red-500"
+						className="text-[#072037] hover:text-red-500 font-medium"
 
 						// className={
 						// 	"text-xs font-semibold transition-colors hover:text-primary",
@@ -51,11 +51,11 @@ const NavBar = async () => {
 					</Link>
 				))}
 			</nav>
-			<div className="flex text-black h-full items-center pr-4">
+			<div className="flex text-black h-full items-center pr-12">
 				<SignInButton>
 					<Button
 						variant="outline"
-						className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+						className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
 					>
 						Sign In
 					</Button>

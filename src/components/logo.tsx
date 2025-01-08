@@ -1,9 +1,9 @@
 const Logo = () => (
-	<svg viewBox="0 0 200 200"  width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+	<svg viewBox="0 0 200 200"  width="70" height="70" xmlns="http://www.w3.org/2000/svg">
 		<circle
 			cx="100"
 			cy="100"
-			r="95"
+			r="98"
 			fill="white"
 			stroke="#E63946"
 			strokeWidth="4"
@@ -32,7 +32,7 @@ const Logo = () => (
 				fill="#E63946"
 				textAnchor="middle"
 			>
-				LIFE • BLOOD • BANK
+				Life • BLOOD • BANK
 			</textPath>
 		</text>
 	</svg>
