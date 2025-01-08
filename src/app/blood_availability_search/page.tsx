@@ -60,7 +60,7 @@ const BloodBankSearch = () => {
         id: 3,
         name: "State Bank Demo",
         address:
-          "234 test A, 2XYZc, demo bank Blood Bank Sikar, New Delhi, Delhi",
+          "234 test A, 2XYZc, demo bank Blood Bank Sikar, Pune, Maharashtra",
         contact: {
           phone: "9900000000",
           fax: "",
@@ -168,8 +168,9 @@ const BloodBankSearch = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All</SelectItem>
-              <SelectItem value="new-delhi">New Delhi</SelectItem>
-              <SelectItem value="central delhi">Central Delhi</SelectItem>
+              <SelectItem value="New Delhi">New Delhi</SelectItem>
+              <SelectItem value="Central Delhi">Central Delhi</SelectItem>
+              <SelectItem value="Pune">Pune</SelectItem>
             </SelectContent>
           </Select>
 
