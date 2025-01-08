@@ -3,8 +3,8 @@ import { BookPlus, HandHeart } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const ProgressCard = () => {
-	const [donorRegisterd, setDonorRegistered] = useState<number>(10);
-	const [bloodUnitCollected, setBloodUnitCollected] = useState<number>(15);
+	const [donorRegisterd, setDonorRegistered] = useState<number>(1000);
+	const [bloodUnitCollected, setBloodUnitCollected] = useState<number>(1500);
 
 	const progresses = [
 		{
@@ -52,7 +52,7 @@ const ProgressCard = () => {
 							</div>
 							<div className="flex items-center">
 								<h1 className="text-red-600 text-2xl font-bold  text-center">
-									{progress.count}
+									{progress.count}{"+"}
 								</h1>
 							</div>
 
