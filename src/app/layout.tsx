@@ -6,7 +6,9 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import localFont from "next/font/local";
+import { Mulish } from 'next/font/google';
 import "./globals.css";
+import NavBar from "@/components/nav-bar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,6 +20,13 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const mulish = Mulish({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mulish',
+  weight: [ '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
 export const metadata: Metadata = {
@@ -34,12 +43,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`min-h-screen bg-[#ffffff] ${geistSans.variable} ${geistMono.variable}  ${mulish.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkProvider>
           <div className="flex min-h-screen flex-col">
-            <header className="flex items-center justify-between p-4">
+          <NavBar /> 
+            {/* <header className="flex items-center justify-between p-4">
               <div>
                 <SignedOut>
                   <SignInButton />
@@ -48,7 +58,7 @@ export default function RootLayout({
                   <UserButton />
                 </SignInButton>
               </div>
-            </header>
+            </header> */}
             <main className="flex-1">{children}</main>
           </div>
         </ClerkProvider>
