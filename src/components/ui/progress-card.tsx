@@ -3,8 +3,8 @@ import { BookPlus, HandHeart } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const ProgressCard = () => {
-	const [donorRegisterd, setDonorRegistered] = useState<number>(0);
-	const [bloodUnitCollected, setBloodUnitCollected] = useState<number>(0);
+	const [donorRegisterd, setDonorRegistered] = useState<number>(10);
+	const [bloodUnitCollected, setBloodUnitCollected] = useState<number>(15);
 
 	const progresses = [
 		{
@@ -44,7 +44,7 @@ const ProgressCard = () => {
 				{progresses.map((progress, index) => (
 					<div
 						key={index}
-						className="bg-[#fcc6c7] group relative rounded-2xl  p-6  transition-all duration-300 cursor-pointer shadow-md"
+						className="bg-white shadow-md shadow-slate-400 group relative rounded-2xl  p-6  transition-all duration-300 cursor-pointer"
 					>
 						<div className="flex flex-col items-center space-y-4">
 							<div className="flex justify-center items-center  text-[#0b3052] transition-colors">
