@@ -1,24 +1,23 @@
-import { Search, LogIn, BookPlus, MapPin } from "lucide-react";
 import Link from "next/link";
+import { Search, LogIn, BookPlus, MapPin } from "lucide-react";
 
 const FeatureCards = () => {
 	const features = [
 		{
-			href: "blood_availability_search",
+			href: "/blood_availability_search",
 			title: "Blood Availability Search",
 			description:
 				"Quick search for available blood types across registered blood banks",
 			icon: <Search className="w-6 h-6" />,
 		},
-
 		{
-			href: "3",
+			href: "/sign-in",
 			title: "Donor Login",
 			description: "Access your donor profile and donation history",
 			icon: <LogIn className="w-6 h-6" />,
 		},
 		{
-			href: "2",
+			href: "/nearest_blood_bank",
 			title: "Find Your Nearest Blood Bank",
 			description: "Locate the closest blood bank centers in your area",
 			icon: <MapPin className="w-6 h-6" />,
