@@ -6,6 +6,7 @@ import FeatureCards from "@/components/ui/feature-card";
 import ProgressCard from "@/components/ui/progress-card";
 import { Mail, MapPinHouse, MoveRight, Phone } from "lucide-react";
 import NavBar from "@/components/nav-bar";
+import { LearnAboutDonation } from "@/components/learn-about-donation";
 
 const Home = async () => {
 	const user = await currentUser();
@@ -42,11 +43,13 @@ const Home = async () => {
 					/>
 				</section>
 			</div>
+			
 			<div className="flex flex-col items-center mt-8">
 				<h1 className="text-[#0b3052] text-3xl font-bold mb-4 ">
 					Our Features
 				</h1>
 				<FeatureCards />
+				<LearnAboutDonation /> 
 				<div className="flex flex-col items-center mt-8  w-full py-8 bg-[#f8fbfd] ">
 					<h1 className="text-[#0b3052] text-3xl font-bold mb-4 ">
 						Our Progress
@@ -54,6 +57,7 @@ const Home = async () => {
 					<ProgressCard />
 				</div>
 			</div>
+			
 			<div className="bg-[#f1f6ff] flex justify-center items-center py-4  gap-[-100px] ">
 				<div className="bg-white shadow-lg shadow-slate-600 h-[400px] w-[400px] mt-16 rounded-xl px-4 py-4 flex flex-col items-center gap-8  mr-[-58px] z-10">
 					<h1 className="text-[#0b3052] text-3xl font-bold">
