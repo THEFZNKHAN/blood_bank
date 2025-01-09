@@ -48,7 +48,7 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <div className="flex min-h-screen flex-col">
-          <NavBar /> 
+        
             {/* <header className="flex items-center justify-between p-4">
               <div>
                 <SignedOut>

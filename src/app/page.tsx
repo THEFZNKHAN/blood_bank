@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import FeatureCards from "@/components/ui/feature-card";
 import ProgressCard from "@/components/ui/progress-card";
 import { Mail, MapPinHouse, MoveRight, Phone } from "lucide-react";
+import NavBar from "@/components/nav-bar";
 
 const Home = async () => {
 	const user = await currentUser();
@@ -12,6 +13,7 @@ const Home = async () => {
 
 	return (
 		<div className="h-screen bg-white ">
+			<NavBar />
 			<div className="flex flex-row  items-center ">
 				<section className="flex-1 pl-12 pr-8 flex-col  items-start justify-center">
 					<h1 className="text-[#0b3052] text-4xl font-bold mb-4 ">
