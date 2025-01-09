@@ -7,6 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String   @id @default(cuid())
+  role      String   @default("donor")
+  clerkId   String   @unique
+  donor     Donor?  @relation
+  donorId   String?  // Optional foreign key, in case the user has a donor profile
+  staff     Staff?  @relation
+  staffId   String? 
+}
+
 model Donor {
   id        String   @id @default(cuid())
   clerkId   String   @unique
@@ -15,12 +25,35 @@ model Donor {
   phone     String
   bloodType String
   address   String
+  userId    String   @unique // Unique because a donor corresponds to only one user
+  user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   medicalHistories MedicalHistory[]
   appointments     Appointment[]
   donations        Donation[]
+}
+
+
+model Staff {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String
+  userId    String   @unique // Unique because a donor corresponds to only one user
+  user      User     @relation(fields: [userId], references: [id])
+  bloodBankId   String
+  bloodBank  BloodBank @relation(fields: [bloodBankId], references: [id])
+}
+
+model BloodBank {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  phone     String
+  email     String
+  staff    Staff[]
 }
 
 model MedicalHistory {

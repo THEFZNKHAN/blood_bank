@@ -1,15 +1,24 @@
 import Link from "next/link";
+import { auth } from "@clerk/nextjs/server";
 import Logo from "./logo";
 import {
 	ClerkProvider,
 	SignedIn,
 	SignedOut,
 	SignInButton,
+	SignUpButton,
 	UserButton,
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+import UserAvtar from "./ui/UserAvtar";
+import { Separator } from "./ui/separator"
+
 
 const NavBar = async () => {
+
+	const user = await auth();
+	console.log(user);
+
 	const routes = [
 		{
 			href: `1`,
@@ -52,14 +61,34 @@ const NavBar = async () => {
 				))}
 			</nav>
 			<div className="flex text-black h-full items-center pr-12">
-				<SignInButton>
-					<Button
-						variant="outline"
-						className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
-					>
-						Sign In
-					</Button>
-				</SignInButton>
+				{user.userId ? (
+					<UserAvtar />
+				) : (
+					<div className="flex gap-3  h-9 items-center">
+						<SignInButton>
+							<Button
+								variant="outline"
+								className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
+							>
+								Sign In
+							</Button>
+						</SignInButton>
+
+						<Separator
+							orientation="vertical"
+							className="bg-red-300"
+						/>
+
+						<SignUpButton>
+							<Button
+								variant="outline"
+								className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
+							>
+								Register
+							</Button>
+						</SignUpButton>
+					</div>
+				)}
 			</div>
 		</header>
 	);
