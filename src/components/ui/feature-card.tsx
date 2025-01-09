@@ -23,7 +23,7 @@ const FeatureCards = () => {
 			icon: <MapPin className="w-6 h-6" />,
 		},
 		{
-			href: "4",
+			href: "/register-blood-bank",
 			title: "Register New Blood Bank",
 			description: "Register your blood bank facility in our network",
 			icon: <BookPlus className="w-6 h-6" />,
