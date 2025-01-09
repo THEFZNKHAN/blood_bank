@@ -6,48 +6,47 @@ import { useUser } from "@clerk/nextjs";
 export default function Dashboard() {
   const { user, isLoaded } = useUser(); // `isLoaded` ensures user data is fully loaded
 
-  useEffect(() => {
-    const registerDonor = async () => {
-      if (!user || !user.id || !user.primaryEmailAddress) {
-        console.error("User data is not available:", user);
-        return;
-      }
+  // useEffect(() => {
+  //   const registerDonor = async () => {
+  //     if (!user || !user.id || !user.primaryEmailAddress) {
+  //       console.error("User data is not available:", user);
+  //       return;
+  //     }
 
-      console.log("Sending data to API:", {
-        clerkId: user.id,
-        email: user.primaryEmailAddress.emailAddress,
-      });
+  //     console.log("Sending data to API:", {
+  //       clerkId: user.id,
+  //       email: user.primaryEmailAddress.emailAddress,
+  //     });
 
-      try {
-        const response = await fetch("/api/donors/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            clerkId: user.id,
-            email: user.primaryEmailAddress.emailAddress,
-          }),
-        });
+  //     try {
+  //       const response = await fetch("/api/donors/register", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           clerkId: user.id,
+  //           email: user.primaryEmailAddress.emailAddress,
+  //         }),
+  //       });
 
-        const responseBody = await response.json();
-        console.log("API Response:", responseBody);
+  //       const responseBody = await response.json();
+  //       console.log("API Response:", responseBody);
 
-        if (!response.ok) {
-          throw new Error(responseBody.error || "Failed to register donor");
-        }
-      } catch (error) {
-        console.error("Error registering donor:", error);
-      }
-    };
+  //       if (!response.ok) {
+  //         throw new Error(responseBody.error || "Failed to register donor");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error registering donor:", error);
+  //     }
+  //   };
 
-    if (isLoaded) {
-      registerDonor();
-    }
-  }, [user, isLoaded]);
+  //   if (isLoaded) {
+  //     registerDonor();
+  //   }
+  // }, [user, isLoaded]);
 
   return (
-    <div>
-      <h1>Welcome, {user?.firstName || "User"}!</h1>
-      <p>Your dashboard is ready.</p>
-    </div>
+    <main>
+      this is dashboard page
+    </main>
   );
 }

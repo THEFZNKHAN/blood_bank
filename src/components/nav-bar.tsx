@@ -1,15 +1,35 @@
 import Link from "next/link";
+import { auth } from "@clerk/nextjs/server";
+import { useAuth } from '@clerk/clerk-react';
 import Logo from "./logo";
 import {
 	ClerkProvider,
 	SignedIn,
 	SignedOut,
 	SignInButton,
+	SignUpButton,
 	UserButton,
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 
+import { Separator } from "./ui/separator";
+import { prisma } from "@/lib/prisma";
+
 const NavBar = async () => {
+	const {userId} = await auth();
+	console.log('this is user :', userId);
+	// fetch the role of the user and based on the role navigate the user on there respective dashboard
+	// if (!userId ){ // take a look on it
+	// 	return
+	// }
+	// const user = await prisma.user.findFirst({
+	// 	where: {
+	// 		clerkId: userId,
+	// 	}
+	// })
+
+	
+
 	const routes = [
 		{
 			href: `1`,
@@ -29,7 +49,7 @@ const NavBar = async () => {
 	];
 
 	return (
-		<header className="bg-[#f1f6ff] h-20 flex items-center  justify-between shadow-md">
+		<header className="bg-[#f1f6ff] h-20 flex items-center  justify-between shadow-sm">
 			<Link href={"/"} className="w-40 pl-10 flex items-center h-full">
 				<Logo />
 			</Link>
@@ -51,15 +71,43 @@ const NavBar = async () => {
 					</Link>
 				))}
 			</nav>
-			<div className="flex text-black h-full items-center pr-12">
-				<SignInButton>
-					<Button
-						variant="outline"
-						className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
-					>
-						Sign In
-					</Button>
-				</SignInButton>
+			<div className="flex h-full items-center pr-12">
+				{userId ? (
+					<div className="flex space-x-8 items-center">
+						<Link
+							href="/dashboard/profile"
+							className="text-md font-medium text-[#072037] hover:text-red-500"
+						>
+							Dashboard
+						</Link>
+						<UserButton />
+					</div>
+				) : (
+					<div className="flex gap-3  h-9 items-center">
+						<SignInButton>
+							<Button
+								variant="outline"
+								className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
+							>
+								Sign In
+							</Button>
+						</SignInButton>
+
+						<Separator
+							orientation="vertical"
+							className="bg-red-300"
+						/>
+
+						<SignUpButton>
+							<Button
+								variant="outline"
+								className="border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white"
+							>
+								Register
+							</Button>
+						</SignUpButton>
+					</div>
+				)}
 			</div>
 		</header>
 	);
