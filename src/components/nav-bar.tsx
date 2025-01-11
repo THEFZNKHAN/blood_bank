@@ -19,14 +19,14 @@ const NavBar = async () => {
 	const {userId} = await auth();
 	console.log('this is user :', userId);
 	// fetch the role of the user and based on the role navigate the user on there respective dashboard
-	// if (!userId ){ // take a look on it
-	// 	return
-	// }
-	// const user = await prisma.user.findFirst({
-	// 	where: {
-	// 		clerkId: userId,
-	// 	}
-	// })
+	if (!userId ){ // take a look on it
+		return
+	}
+	const user = await prisma.user.findFirst({
+		where: {
+			clerkId: userId,
+		}
+	})
 
 	
 
@@ -75,7 +75,7 @@ const NavBar = async () => {
 				{userId ? (
 					<div className="flex space-x-8 items-center">
 						<Link
-							href="/dashboard/profile"
+							href={user && user.role === 'donor' ? "/dashboard/donor/profile": "/blood_bank_dashboard"}
 							className="text-md font-medium text-[#072037] hover:text-red-500"
 						>
 							Dashboard

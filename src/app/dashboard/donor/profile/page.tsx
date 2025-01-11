@@ -1,21 +1,54 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProfileDisplay } from "@/components/donor-profile";
+import { prisma } from "@/lib/prisma";
+import { UserDetials } from "@/app/user-registeration/page";
 
+interface Donor extends UserDetials {
+	donor: {
+		bloodType: string | null;
+	};
+}
 export default function ProfilePage() {
-	const [isUsrInfoExist, setIsUserInfoExist] = useState<boolean>(false);
-	// write a logic here if user have first name and last name then show user information otherwise display the form to fill the information.
+	const [donor, setDonor] = useState<Donor>({
+		firstname: "",
+		lastname: "",
+		address: "",
+		phone: "",
+		DateOfBirth: "",
+		role: "",
+		donor: {
+			bloodType: "",
+		},
+	});
+	const [editUserInfo, setEditUserInfo] = useState<boolean>(false);
+	console.log('donor on frontend')
+	useEffect(() => {
+		const fetchUserInfo = async () => {
+			try {
+				const res = await axios.get("/api/donors/profile");
+				console.log("this is user response data: ", res.data);
+				if (res.status === 200) {
+					// set the user info
+					setDonor(res.data);
+				}
+			} catch (error) {}
+		};
+		// fetch the user detail
+		fetchUserInfo();
+	}, []);
+
 	return (
 		<div className="space-y-6">
 			<h1 className="text-2xl font-bold text-[#072037]">
 				Profile Management
 			</h1>
-			{!isUsrInfoExist ? (
+			{editUserInfo ? (
 				<Card>
 					<CardHeader>
 						<CardTitle className="text-[#072037]">
@@ -35,14 +68,14 @@ export default function ProfilePage() {
 									<Label htmlFor="lastName">Last Name</Label>
 									<Input id="lastName" placeholder="Doe" />
 								</div>
-								<div className="space-y-2">
+								{/* <div className="space-y-2">
 									<Label htmlFor="email">Email</Label>
 									<Input
 										id="email"
 										type="email"
 										placeholder="john@example.com"
 									/>
-								</div>
+								</div> */}
 								<div className="space-y-2">
 									<Label htmlFor="phone">Phone</Label>
 									<Input
@@ -67,7 +100,7 @@ export default function ProfilePage() {
 							<Button
 								type="submit"
 								className="bg-[#072037]"
-								onClick={() => setIsUserInfoExist(true)}
+								// onClick={() => setIsUserInfoExist(true)}
 							>
 								Save Changes
 							</Button>
@@ -75,7 +108,15 @@ export default function ProfilePage() {
 					</CardContent>
 				</Card>
 			) : (
-				<ProfileDisplay firstName={"Emad"} lastName={"Ansari"} email={"ansari@ansari.com"} phone={"89343298324"} bloodType={"A+"} dateOfBirth={"20-10-2002"} />
+				<ProfileDisplay
+					setEditUserInfo={setEditUserInfo}
+					firstname={donor?.firstname}
+					lastname={donor?.lastname}
+					address={donor?.address}
+					phone={donor.phone}
+					bloodType={donor.donor ? donor.donor.bloodType  : ""}
+					dateOfBirth={donor.DateOfBirth}
+				/>
 			)}
 		</div>
 	);
