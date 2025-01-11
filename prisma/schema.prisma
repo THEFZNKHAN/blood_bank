@@ -11,25 +11,24 @@ model User {
   id        String   @id @default(cuid())
   role      String   @default("donor")
   clerkId   String   @unique
+  firstname String
+  lastname  String
+  phone     String
+  DateOfBirth  DateTime 
+  address   String
   donor     Donor?  @relation
   donorId   String?  // Optional foreign key, in case the user has a donor profile
   staff     Staff?  @relation
   staffId   String? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Donor {
   id        String   @id @default(cuid())
-  clerkId   String   @unique
-  name      String
-  email     String   @unique
-  phone     String
   bloodType String
-  address   String
   userId    String   @unique // Unique because a donor corresponds to only one user
   user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   medicalHistories MedicalHistory[]
   appointments     Appointment[]
   donations        Donation[]
@@ -38,9 +37,6 @@ model Donor {
 
 model Staff {
   id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  phone     String
   userId    String   @unique // Unique because a donor corresponds to only one user
   user      User     @relation(fields: [userId], references: [id])
   bloodBankId   String
