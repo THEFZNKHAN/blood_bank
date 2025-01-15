@@ -5,7 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import { UserDetials } from "@/app/user-registeration/page";
+import { UserDetials } from "@/app/user-registration/page";
 
 export const UserAvtar = ({ userId}: { userId: string | null}) => {
     const [user, setUser] = useState<UserDetials>();
