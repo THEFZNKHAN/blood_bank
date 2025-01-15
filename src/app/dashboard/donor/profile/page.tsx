@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { ProfileDisplay } from "@/components/donor-profile";
 import { prisma } from "@/lib/prisma";
-import { UserDetials } from "@/app/user-registeration/page";
+import { UserDetials } from "@/app/user-registration/page";
 
 interface Donor extends UserDetials {
 	donor: {
