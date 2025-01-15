@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
-import { useAuth } from '@clerk/clerk-react';
 import Logo from "./logo";
 import {
 	ClerkProvider,
@@ -13,22 +12,10 @@ import {
 import { Button } from "./ui/button";
 
 import { Separator } from "./ui/separator";
-import { prisma } from "@/lib/prisma";
+import { UserAvtar } from "./UserAvtar";
 
 const NavBar = async () => {
 	const {userId} = await auth();
-	console.log('this is user :', userId);
-	// fetch the role of the user and based on the role navigate the user on there respective dashboard
-	// if (!userId ){ // take a look on it
-	// 	return
-	// }
-	// const user = await prisma.user.findFirst({
-	// 	where: {
-	// 		clerkId: userId,
-	// 	}
-	// })
-
-	
 
 	const routes = [
 		{
@@ -73,15 +60,7 @@ const NavBar = async () => {
 			</nav>
 			<div className="flex h-full items-center pr-12">
 				{userId ? (
-					<div className="flex space-x-8 items-center">
-						<Link
-							href="/dashboard/profile"
-							className="text-md font-medium text-[#072037] hover:text-red-500"
-						>
-							Dashboard
-						</Link>
-						<UserButton />
-					</div>
+					<UserAvtar userId={userId} /> 
 				) : (
 					<div className="flex gap-3  h-9 items-center">
 						<SignInButton>

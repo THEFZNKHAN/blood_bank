@@ -1,6 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
 import FeatureCards from "@/components/ui/feature-card";
 import ProgressCard from "@/components/ui/progress-card";
@@ -9,8 +7,6 @@ import NavBar from "@/components/nav-bar";
 import { LearnAboutDonation } from "@/components/learn-about-donation";
 
 const Home = async () => {
-	const user = await currentUser();
-	const username = user?.firstName;
 
 	return (
 		<div className="h-screen bg-white ">

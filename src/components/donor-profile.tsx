@@ -1,42 +1,45 @@
+"use client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, Pencil } from 'lucide-react'
+import { Dispatch, SetStateAction } from "react"
 
 interface ProfileDisplayProps {
-  firstName: string
-  lastName: string
-  email: string
+  firstname: string
+  lastname:  string
   phone: string
-  bloodType: string
+  bloodType: string | null
   dateOfBirth: string
-  address?: string
-  onEdit?: () => void
+  address: string
+  setEditUserInfo: Dispatch<SetStateAction<boolean>>
 }
 
-export function ProfileDisplay({
-  firstName,
-  lastName,
-  email,
+export  function ProfileDisplay({
+  firstname,
+  lastname,
   phone,
   bloodType,
   dateOfBirth,
   address = "Not provided",
-  onEdit
+  setEditUserInfo
+  
 }: ProfileDisplayProps) {
+  
+
   return (
     <div className="grid md:grid-cols-[300px_1fr] gap-6">
       {/* Left Column - Profile Card */}
       <Card className="p-6">
         <div className="flex flex-col items-center text-center">
           <Avatar className="h-32 w-32 mb-4">
-            <AvatarImage src="" alt={`${firstName} ${lastName}`} />
+            <AvatarImage src="" alt={`${firstname} ${lastname}`} />
             <AvatarFallback className="text-4xl bg-[#072037] text-white">
-              {firstName?.[0]}{lastName?.[0]}
+              {firstname?.[0]}{lastname?.[0]}
             </AvatarFallback>
           </Avatar>
           <h2 className="text-2xl font-semibold text-[#072037] mb-2">
-            {firstName} {lastName}
+            {firstname} {lastname}
           </h2>
           <p className="text-lg font-medium text-[#072037] mb-2">
             Blood Type: {bloodType}
@@ -56,7 +59,7 @@ export function ProfileDisplay({
             <Button 
               variant="outline" 
               size="sm" 
-              onClick={onEdit}
+              onClick={() => setEditUserInfo(prev => !prev)}
               className="text-[#072037] border-[#072037]"
             >
               <Pencil className="h-4 w-4 mr-2" />
@@ -67,14 +70,14 @@ export function ProfileDisplay({
           <div className="space-y-4">
             <div className="grid grid-cols-[120px_1fr]">
               <span className="text-muted-foreground">Full Name</span>
-              <span className="font-medium">{firstName} {lastName}</span>
+              <span className="font-medium">{firstname} {lastname}</span>
             </div>
             
-            <div className="grid grid-cols-[120px_1fr]">
+            {/* <div className="grid grid-cols-[120px_1fr]">
               <span className="text-muted-foreground">Email</span>
               <span className="font-medium">{email}</span>
             </div>
-            
+             */}
             <div className="grid grid-cols-[120px_1fr]">
               <span className="text-muted-foreground">Phone</span>
               <span className="font-medium">{phone}</span>
@@ -87,7 +90,7 @@ export function ProfileDisplay({
             
             <div className="grid grid-cols-[120px_1fr]">
               <span className="text-muted-foreground">Birth Date</span>
-              <span className="font-medium">{dateOfBirth}</span>
+              <span className="font-medium">{String(dateOfBirth)}</span>
             </div>
             
             <div className="grid grid-cols-[120px_1fr]">

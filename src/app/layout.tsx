@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import {
   ClerkProvider,
-  SignedOut,
-  SignInButton,
-  UserButton,
 } from "@clerk/nextjs";
 import localFont from "next/font/local";
 import { Mulish } from 'next/font/google';
@@ -48,17 +45,6 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <div className="flex min-h-screen flex-col">
-        
-            {/* <header className="flex items-center justify-between p-4">
-              <div>
-                <SignedOut>
-                  <SignInButton />
-                </SignedOut>
-                <SignInButton>
-                  <UserButton />
-                </SignInButton>
-              </div>
-            </header> */}
             <main className="flex-1">{children}</main>
           </div>
         </ClerkProvider>

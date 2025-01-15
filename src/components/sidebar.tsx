@@ -14,22 +14,22 @@ export function Sidebar() {
     {
       label: "Profile",
       icon: UserCircle,
-      href: "/dashboard/profile",
+      href: "/dashboard/donor/profile",
     },
     {
       label: "Medical History",
       icon: FileText,
-      href: "/dashboard/medical-history",
+      href: "/dashboard/donor/medical-history",
     },
     {
       label: "Donation History",
       icon: Clock,
-      href: "/dashboard/donation-history",
+      href: "/dashboard/donor/donation-history",
     },
     {
       label: "Book Appointment",
       icon: Calendar,
-      href: "/dashboard/appointments",
+      href: "/dashboard/donor/appointments",
     },
   ]
 
