@@ -60,7 +60,7 @@ const NavBar = async () => {
 			</nav>
 			<div className="flex h-full items-center pr-12">
 				{userId ? (
-					<UserAvtar userId={userId} /> 
+					<UserAvtar  /> 
 				) : (
 					<div className="flex gap-3  h-9 items-center">
 						<SignInButton>

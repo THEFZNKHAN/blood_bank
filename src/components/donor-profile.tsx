@@ -38,9 +38,9 @@ export  function ProfileDisplay({
               {firstname?.[0]}{lastname?.[0]}
             </AvatarFallback>
           </Avatar>
-          <h2 className="text-2xl font-semibold text-[#072037] mb-2">
+          <h4 className="text-xl font-semibold text-[#072037] mb-2">
             {firstname} {lastname}
-          </h2>
+          </h4>
           <p className="text-lg font-medium text-[#072037] mb-2">
             Blood Type: {bloodType}
           </p>
@@ -55,12 +55,12 @@ export  function ProfileDisplay({
       <Card>
         <CardContent className="p-6">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-[#072037]">Personal Information</h3>
+            <h3 className="text-lg font-semibold text-PRIMARY">Personal Information</h3>
             <Button 
               variant="outline" 
               size="sm" 
               onClick={() => setEditUserInfo(prev => !prev)}
-              className="text-[#072037] border-[#072037]"
+              className="text-[#072037] border-PRIMARY"
             >
               <Pencil className="h-4 w-4 mr-2" />
               Edit
