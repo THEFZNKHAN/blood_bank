@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { ProfileDisplay } from "@/components/donor-profile";
-
-import { UserDetials } from "@/app/user-registeration/page";
+import { prisma } from "@/lib/prisma";
+import { UserDetials } from "@/app/user-registration/page";
 import { CircleX, Loader } from "lucide-react";
 
 interface Donor extends UserDetials {

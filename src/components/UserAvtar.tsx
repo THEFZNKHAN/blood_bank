@@ -2,7 +2,9 @@ import { prisma } from "@/lib/prisma";
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
+import axios from 'axios'
+import { UserDetials } from "@/app/user-registration/page";
 
 export const UserAvtar = async () => {
 
