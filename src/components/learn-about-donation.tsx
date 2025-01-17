@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Button } from "@/components/ui/button"
+
 
 const compatibilityData = [
   { bloodType: "A+", donateTo: "A+ AB+", receiveFrom: "A+ A- O+ O-" },
@@ -17,7 +17,7 @@ export function LearnAboutDonation() {
   return (
     <section className="relative py-12 mt-14">
       <h1 className="text-3xl font-bold text-center text-[#072037] absolute top-0 left-0 right-0 z-10">
-        LEARN ABOUT DONATION
+        Learn About Donation
       </h1>
       
       <div className="container mx-auto max-w-7xl mt-16">
