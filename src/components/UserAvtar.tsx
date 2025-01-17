@@ -1,33 +1,32 @@
-"use client"
-
 import { prisma } from "@/lib/prisma";
 import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import { UserDetials } from "@/app/user-registration/page";
 
-export const UserAvtar = ({ userId}: { userId: string | null}) => {
-    const [user, setUser] = useState<UserDetials>();
+export const UserAvtar = async () => {
 
-    useEffect(() => {
-       
-        if (userId){
-            const fetchUser = async () => {
-                const res = await axios.get('/api/auth')
-                console.log('this is comming', res.data);
-                setUser(res.data)
-            }
-            fetchUser();
-            
-        }
+	const { userId } = await auth();
+	if (!userId) {
+		redirect("/sign-in");
+	}
 
-    }, [])
+	const user = await prisma.user.findFirst({
+		where: {
+			clerkId: userId,
+		},
+	});
+
+	if (!user) {
+		redirect("/");
+	}
+
 
 	return (
 		<div className="flex space-x-8 items-center">
 			<Link
-            
 				href={
 					user && user.role === "donor"
 						? "/dashboard/donor/profile"

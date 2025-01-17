@@ -5,6 +5,7 @@ import ProgressCard from "@/components/ui/progress-card";
 import { Mail, MapPinHouse, MoveRight, Phone } from "lucide-react";
 import NavBar from "@/components/nav-bar";
 import { LearnAboutDonation } from "@/components/learn-about-donation";
+import Link from "next/link";
 
 const Home = async () => {
 
@@ -22,13 +23,13 @@ const Home = async () => {
 							those in need. Your donation can make a difference.
 						</span>
 					</div>
-					<Button
-						size="lg"
-						className="bg-red-600  hover:bg-red-500 text-white w-80 rounded-full"
+					<Link
+						href = "/sign-up"
+						className="bg-red-600  hover:bg-red-500 text-white flex flex-row gap-4 items-center px-4 py-2 w-[50%] rounded-full justify-center "
 					>
 						Donate Now
-						<MoveRight strokeWidth={3} />
-					</Button>
+						<MoveRight strokeWidth={2.5} />
+					</Link>
 				</section>
 				<section className="flex-1  items-center ">
 					<Image
@@ -53,7 +54,6 @@ const Home = async () => {
 					<ProgressCard />
 				</div>
 			</div>
-			
 			<div className="bg-[#f1f6ff] flex justify-center items-center py-4  gap-[-100px] ">
 				<div className="bg-white shadow-lg shadow-slate-600 h-[400px] w-[400px] mt-16 rounded-xl px-4 py-4 flex flex-col items-center gap-8  mr-[-58px] z-10">
 					<h1 className="text-[#0b3052] text-3xl font-bold">
